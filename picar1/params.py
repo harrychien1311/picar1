@@ -27,5 +27,5 @@ if not os.path.isdir(out_dir):
     os.makedirs(out_dir)
 
 epochs = OrderedDict()
-epochs['train'] = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,21,22,23,24,25,26,27,28,29,30,32,33,34,43] # epoch_ids for training data: e.g., "epochs['train'] = [1, 2, 3]" 
-epochs['val'] = [19,20,35,36,37,38,39,40,41,42] # epoch_ids for validation data: e.g., "epochs['val'] = [4]" 
+epochs['train'] = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,21,22,23,24,25,26,27,28,29,30,32,33,34,43,19,20] # epoch_ids for training data: e.g., "epochs['train'] = [1, 2, 3]" 
+epochs['val'] = [35,36,37,38,39,40,41,42] # epoch_ids for validation data: e.g., "epochs['val'] = [4]" 

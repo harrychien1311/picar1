@@ -36,6 +36,12 @@ for p in purposes:
         wheels_cat[p][c] = []
     
 # load all preprocessed training images into memory
+def upload_files():
+  from google.colab import files
+  uploaded = files.upload()
+  for k, v in uploaded.items():
+    open(k, 'wb').write(v)
+  return list(uploaded.keys())
 def load_imgs():
     global imgs
     global wheels
@@ -65,15 +71,15 @@ def load_imgs():
             assert frame_count == len(rows)
             yy = [[float(row['wheel'])] for row in rows]
 
-            for image in data_dir:
-                img = cv2.read(image)
+            for image in os.listdir(data_dir):
+                img = cv2.imread(os.path.join(data_dir,image))
                 img = preprocess.preprocess(img)
                 imgs[p].append(img)
 
             wheels[p].extend(yy)
             assert len(imgs[p]) == len(wheels[p])
 
-            cap.release()
+            
 
 def load_batch(purpose):
     p = purpose
@@ -88,8 +94,9 @@ def load_batch(purpose):
     for i in ii:
         xx.append(imgs[p][i])
         yy.append(wheels[p][i])
-
-    return xx, yy
+    xx_img = np.asarray(xx)
+	yy_img = np.asarray(yy)
+    return xx_img, yy_img
 
 def categorize_imgs():
     global imgs
